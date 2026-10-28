@@ -201,6 +201,43 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .num-card .items-preview{font-size:20px;margin-top:6px;min-height:28px;display:flex;justify-content:center;gap:2px;flex-wrap:wrap}
 
 
+/* Bảng số tương tác - ghép số với nhóm đồ vật */
+.explorer-match-board{max-width:980px;margin:18px auto}
+.explorer-match-head{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:10px}
+.explorer-match-head div{padding:10px;border-radius:16px;background:#eaf5ff;color:#41658f;font-weight:1000;text-align:center}
+.explorer-match-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+.explorer-number-col,.explorer-object-col{display:grid;gap:10px}
+.explorer-match-tile{min-height:82px;border:3px solid #e1ecfb;border-radius:20px;background:#fff;box-shadow:0 5px 0 #d7e4f5;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px;transition:.2s}
+.explorer-number-tile{font-size:34px;font-weight:1000;color:#ff4c93;position:relative}
+.explorer-drop{flex:1;min-height:58px;border:3px dashed #9fc9ea;border-radius:16px;background:#f7fbff;display:grid;place-items:center;color:#89a0bb;font-size:16px;font-weight:900}
+.explorer-drop.hot{background:#e4fff0;border-color:#45bf82}
+.explorer-drop.correct{background:#d9f8e5;border-style:solid;border-color:#62cb91;color:#217a4a}
+.object-drag-card{min-height:82px;border:3px solid #fff0a8;border-radius:20px;background:#fff8d2;box-shadow:0 5px 0 #e7d889;display:flex;align-items:center;justify-content:center;gap:8px;cursor:grab;user-select:none;touch-action:manipulation}
+.object-drag-card .object-count{font-size:28px;font-weight:1000;color:#70550f}
+.object-drag-card .object-icons{font-size:28px;line-height:1.2;max-width:85%;display:flex;flex-wrap:wrap;justify-content:center}
+.object-drag-card.selected{outline:4px solid #3ca8e5;outline-offset:2px}
+.object-drag-card.used{opacity:.28;pointer-events:none}
+@media(max-width:700px){.explorer-match-list{grid-template-columns:1fr}.explorer-match-head{grid-template-columns:1fr 1fr}.explorer-match-tile{min-height:74px}}
+
+.split-source{max-width:900px;margin:12px auto 18px;padding:14px;border:4px dashed #b9def7;border-radius:24px;background:linear-gradient(180deg,#effaff,#fff8e8);text-align:center}
+.split-source h3{margin:0 0 8px;color:#456792}
+.split-source-objects{min-height:90px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:7px}
+.split-apple{width:56px;height:56px;border:3px solid #fff;border-radius:16px;background:#ffe9ee;box-shadow:0 5px 0 #e8c9d2;display:grid;place-items:center;font-size:32px;cursor:grab;touch-action:manipulation;user-select:none}
+.split-apple.selected{outline:4px solid #3ca8e5;outline-offset:2px;transform:translateY(-3px)}
+.split-apple.placed{opacity:.35;cursor:default}
+.split-targets{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:920px;margin:0 auto}
+.split-target{min-height:220px;border:4px dashed #9fc9ea;border-radius:24px;background:#f8fcff;padding:12px;text-align:center;transition:.2s}
+.split-target.hot{background:#e5fff0;border-color:#42bf80}
+.split-target.locked{background:#eef8ff}
+.split-target h3{margin:3px 0 8px;color:#456792}
+.split-given-number{display:inline-flex;align-items:center;justify-content:center;min-width:60px;height:60px;border-radius:18px;background:#fff0a8;color:#6b5110;font-size:34px;font-weight:1000;margin-bottom:8px}
+.split-target-objects{min-height:105px;display:flex;justify-content:center;align-content:center;flex-wrap:wrap;gap:6px}
+.split-number-choice{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;max-width:700px;margin:16px auto}
+.split-number-choice button{min-width:54px;height:54px;border:3px solid #fff;border-radius:16px;background:#fff1b8;box-shadow:0 5px 0 #dfca76;font-size:26px;font-weight:1000;color:#6b5110;cursor:pointer}
+.split-number-choice button.correct{background:#c8f7d9;box-shadow:0 5px 0 #83d7a4}
+.split-number-choice button.wrong{background:#ffd1d1;box-shadow:0 5px 0 #f58a8a}
+@media(max-width:700px){.split-targets{grid-template-columns:1fr}.split-apple{width:50px;height:50px;font-size:28px}}
+
 /* Mini games: Tách nhóm, Ai tinh mắt, Bé thông minh */
 .mini-screen{padding:clamp(16px,3vw,30px);position:relative}
 .mini-title{text-align:center;font-size:clamp(24px,4vw,36px);margin:8px 0;color:#31476d}
@@ -313,7 +350,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
         </div>
       </div>
       <div class="toolbar">
-        <button class="tool-btn active" id="speechToggle" aria-pressed="true">🗣️ Đọc: Bật</button>
+        <button class="tool-btn active" id="speechToggle" aria-pressed="true">👧 Giọng bé gái Bắc: Bật</button>
         <button class="tool-btn active" id="soundToggle" aria-pressed="true">🔊 Âm thanh: Bật</button>
         <button class="tool-btn" id="restartBtn">🔄 Chơi lại</button>
       </div>
@@ -374,24 +411,58 @@ button:disabled{opacity:.45;cursor:not-allowed}
       <p class="bottom-note">🌷 Bé đếm lần lượt từng hình nhé! Mỗi câu đúng lần đầu được 10 điểm. 🌷</p>
     </main>
 
-    <!-- Mode 3: Interactive Number Explorer Board -->
+    <!-- Mode 3: Interactive Number Matching Board -->
     <section id="explorerScreen" class="card game-card hidden">
       <div class="group-tag">🔢 BẢNG SỐ TƯƠNG TÁC PHẠM VI 8</div>
-      <h2 class="question">Bé hãy chạm vào từng số để đếm nhé!</h2>
-      <p class="instruction">Mỗi chữ số sẽ phát âm và hiển thị số lượng vật phẩm tương ứng.</p>
-      <div class="explorer-grid" id="explorerGrid"></div>
+      <h2 class="question">Bé kéo nhóm đồ vật ghép với số tương ứng nhé!</h2>
+      <p class="instruction">Bên trái là các số 1–8. Bên phải là các nhóm đồ vật. Hãy kéo từng nhóm đồ vật vào đúng ô số.</p>
+      <div class="explorer-match-board">
+        <div class="explorer-match-head">
+          <div>🔢 SỐ</div><div>🍎 NHÓM ĐỒ VẬT</div>
+        </div>
+        <div class="explorer-match-list">
+          <div class="explorer-number-col" id="explorerNumbers"></div>
+          <div class="explorer-object-col" id="explorerObjects"></div>
+        </div>
+      </div>
+      <div class="smart-feedback" id="explorerFeedback">👆 Bé hãy kéo một nhóm đồ vật vào số phù hợp!</div>
     </section>
 
 
     <!-- Mini Game: Tách nhóm -->
     <section id="splitScreen" class="card mini-screen hidden">
-      <div class="group-tag">🍎 TRÒ CHƠI · TÁCH NHÓM</div>
-      <h2 class="mini-title">Bé hãy tách 8 đối tượng thành 2 phần</h2>
-      <p class="mini-subtitle">Có 8 quả táo. Bé chọn cách tách thành hai nhóm. Hãy khám phá nhiều cách khác nhau nhé!</p>
-      <div class="split-board" id="splitBoard"></div>
-      <div class="split-choice-grid" id="splitChoices"></div>
-      <div class="smart-feedback" id="splitFeedback">🌱 Bé hãy chọn một cách tách 8 nhé!</div>
-      <div class="bottom-actions"><button class="secondary-btn" id="splitNextBtn">Cách tách khác ➜</button></div>
+      <div class="group-tag">🍎 TRÒ CHƠI · TÁCH NHÓM 8</div>
+      <h2 class="mini-title">Bé hãy tách 8 đồ vật thành 2 nhóm</h2>
+      <p class="mini-subtitle">Kéo từng quả táo từ phía trên xuống 2 ô bên dưới. Một ô đã cho sẵn số. Khi đủ 8 quả, bé chọn thẻ số cho nhóm còn lại.</p>
+
+      <div class="split-source">
+        <h3>🍎 TỔNG SỐ ĐỒ VẬT: 8</h3>
+        <div class="split-source-objects" id="splitSourceObjects"></div>
+      </div>
+
+      <div class="split-targets">
+        <div class="split-target" id="splitTargetA">
+          <h3>NHÓM 1</h3>
+          <div class="split-given-number" id="splitGivenNumber">3</div>
+          <div class="split-target-objects" id="splitObjectsA"></div>
+          <div>Đã có: <strong id="splitCountA">0</strong> / 3</div>
+        </div>
+
+        <div class="split-target" id="splitTargetB">
+          <h3>NHÓM 2</h3>
+          <div class="split-given-number" id="splitSecondNumber">?</div>
+          <div class="split-target-objects" id="splitObjectsB"></div>
+          <div>Đã có: <strong id="splitCountB">0</strong></div>
+        </div>
+      </div>
+
+      <div class="instruction" style="text-align:center;margin-top:14px">Khi đã kéo đủ 8 quả, hãy chọn số đúng cho NHÓM 2:</div>
+      <div class="split-number-choice" id="splitNumberChoices"></div>
+
+      <div class="smart-feedback" id="splitFeedback">🌱 Bé hãy kéo 3 quả táo vào Nhóm 1 trước nhé!</div>
+      <div class="bottom-actions">
+        <button class="secondary-btn" id="splitNextBtn">🍎 Cách tách khác</button>
+      </div>
     </section>
 
     <!-- Mini Game: Ai tinh mắt -->
@@ -531,10 +602,15 @@ const els = {
   canvas:$("fireworks"),highScore:$("highScoreDisplay"),speakBtn:$("speakBtn"),
   tabStandard:$("tabStandard"),tabEndless:$("tabEndless"),tabExplorer:$("tabExplorer"),
   tabSplit:$("tabSplit"),tabEye:$("tabEye"),tabSmart:$("tabSmart"),
-  explorerGrid:$("explorerGrid"),reviewNumbers:$("reviewNumbers"),
-  splitScreen:$("splitScreen"),splitBoard:$("splitBoard"),splitChoices:$("splitChoices"),
-  splitFeedback:$("splitFeedback"),splitNext:$("splitNextBtn"),
-  eyeScreen:$("eyeScreen"),eyeBoard:$("eyeBoard"),eyeFeedback:$("eyeFeedback"),eyeNext:$("eyeNextBtn"),
+  explorerNumbers:$("explorerNumbers"),explorerObjects:$("explorerObjects"),
+  explorerFeedback:$("explorerFeedback"),reviewNumbers:$("reviewNumbers"),
+  splitScreen:$("splitScreen"),splitSourceObjects:$("splitSourceObjects"),
+  splitTargetA:$("splitTargetA"),splitTargetB:$("splitTargetB"),
+  splitObjectsA:$("splitObjectsA"),splitObjectsB:$("splitObjectsB"),
+  splitGivenNumber:$("splitGivenNumber"),splitSecondNumber:$("splitSecondNumber"),
+  splitCountA:$("splitCountA"),splitCountB:$("splitCountB"),
+  splitNumberChoices:$("splitNumberChoices"),splitFeedback:$("splitFeedback"),splitNext:$("splitNextBtn"),
+  eyeScreen:$("eyeScreen"),eyeBoard:$("eyeBoard"),digitPool:$("digitPool"),eyeFeedback:$("eyeFeedback"),eyeNext:$("eyeNextBtn"),
   smartScreen:$("smartScreen"),trainAnswer:$("trainAnswer"),trainCars:$("trainCars"),
   smartFeedback:$("smartFeedback"),smartReset:$("smartResetBtn"),
   badgeTag:$("badgeTag"),finishMsg:$("finishMessage"),finalScore:$("finalScore"),
@@ -580,32 +656,41 @@ function escapeHTML(value){
    3. SPEECH SYNTHESIS API (GIỌNG ĐỌC TIẾNG VIỆT)
    ========================================================= */
 let selectedVietnameseVoice = null;
+
 function pickVietnameseFemaleVoice(){
   if(!('speechSynthesis' in window)) return null;
   const voices = window.speechSynthesis.getVoices() || [];
   const vi = voices.filter(v => /^vi(-|_)?VN/i.test(v.lang) || /^vi/i.test(v.lang));
-  // Ưu tiên các tên thường gặp của giọng nữ tiếng Việt; nếu trình duyệt không cung cấp,
-  // dùng giọng vi-VN đầu tiên. Accent Bắc phụ thuộc bộ giọng của thiết bị/trình duyệt.
-  const preferred = vi.find(v => /HoaiMy|Hoài My|female|nữ|Microsoft.*Vietnamese.*Female|Google.*Vietnamese/i.test(v.name));
-  selectedVietnameseVoice = preferred || vi[0] || null;
+
+  // Không fallback sang giọng nam. Ưu tiên các voice nữ Việt Nam,
+  // đặc biệt các voice Google/Windows có định danh nữ. Giọng vùng miền
+  // cuối cùng phụ thuộc voice mà máy/trình duyệt cung cấp.
+  const female = vi.find(v => /Wavenet-C|Standard-C|Google.*Vietnamese.*Female|Vietnamese.*Female|female|nữ|HoaiMy|Hoài My/i.test(v.name));
+  selectedVietnameseVoice = female || null;
   return selectedVietnameseVoice;
 }
+
 function speak(text) {
   if (!speechEnabled || !('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
+
+  const voice = selectedVietnameseVoice || pickVietnameseFemaleVoice();
+  if (!voice) {
+    console.warn('Thiết bị chưa cung cấp giọng nữ tiếng Việt; không dùng giọng nam thay thế.');
+    return;
+  }
+
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'vi-VN';
-  utterance.rate = 0.86;
-  utterance.pitch = 1.06;
-  const voice = selectedVietnameseVoice || pickVietnameseFemaleVoice();
-  if (voice) utterance.voice = voice;
+  utterance.voice = voice;
+  utterance.rate = 0.84;
+  utterance.pitch = 1.18;
   window.speechSynthesis.speak(utterance);
 }
 
-// Pre-load voices
 if ('speechSynthesis' in window) {
   window.speechSynthesis.onvoiceschanged = () => pickVietnameseFemaleVoice();
-  setTimeout(pickVietnameseFemaleVoice, 300);
+  [300,1000,2000,3500].forEach(ms => setTimeout(pickVietnameseFemaleVoice, ms));
 }
 
 /* =========================================================
@@ -1109,38 +1194,135 @@ function showFinishScreen() {
 
 
 /* =========================================================
-   9A. MINI GAME: TÁCH NHÓM 8
+   9A. MINI GAME: TÁCH NHÓM 8 - KÉO THẢ ĐỒ VẬT
    ========================================================= */
-const SPLIT_WAYS = shuffle([
-  [0,8],[1,7],[2,6],[3,5],[4,4],[5,3],[6,2],[7,1],[8,0]
-]);
+const SPLIT_WAYS = shuffle([[1,7],[2,6],[3,5],[4,4],[5,3],[6,2],[7,1]]);
 let splitIndex = 0;
+let splitGiven = 3;
+let splitPlacedA = 0;
+let splitPlacedB = 0;
+let splitSelectedApple = null;
+
+function makeSplitApple(id){
+  const b=document.createElement('button');
+  b.type='button';
+  b.className='split-apple';
+  b.textContent='🍎';
+  b.dataset.id=id;
+  b.draggable=true;
+  b.setAttribute('aria-label','Quả táo '+id);
+
+  b.addEventListener('dragstart',e=>{
+    if(b.classList.contains('placed')){e.preventDefault();return;}
+    splitSelectedApple=b;
+    e.dataTransfer.setData('text/plain',id);
+  });
+  b.addEventListener('click',()=>{
+    if(b.classList.contains('placed')) return;
+    document.querySelectorAll('.split-apple').forEach(x=>x.classList.remove('selected'));
+    b.classList.add('selected');
+    splitSelectedApple=b;
+    els.splitFeedback.textContent='👆 Bé đã chọn một quả táo. Hãy chạm vào Nhóm 1 hoặc Nhóm 2.';
+  });
+  return b;
+}
+
+function updateSplitCounts(){
+  els.splitCountA.textContent=splitPlacedA;
+  els.splitCountB.textContent=splitPlacedB;
+  els.splitSecondNumber.textContent=splitPlacedA+splitPlacedB===8 ? (8-splitGiven) : '?';
+}
+
+function placeSelectedApple(target){
+  if(!splitSelectedApple || splitSelectedApple.classList.contains('placed')) return;
+  const apple=splitSelectedApple;
+  apple.classList.remove('selected');
+  apple.classList.add('placed');
+  const clone=makeSplitApple(apple.dataset.id);
+  clone.classList.add('placed');
+  clone.draggable=false;
+  clone.style.opacity='1';
+  target.appendChild(clone);
+  if(target===els.splitObjectsA) splitPlacedA++;
+  else splitPlacedB++;
+  splitSelectedApple=null;
+  updateSplitCounts();
+
+  if(splitPlacedA+splitPlacedB===8){
+    els.splitFeedback.textContent='🎯 Tuyệt vời! Bé đã chia đủ 8 quả. Bây giờ chọn số cho Nhóm 2.';
+    els.splitNumberChoices.querySelectorAll('button').forEach(x=>x.disabled=false);
+    speak(`Bé đã chia đủ 8 quả táo. Hãy chọn số của Nhóm 2.`);
+  }else{
+    speak(`Đã có ${splitPlacedA+splitPlacedB} quả táo. Bé tiếp tục nhé.`);
+  }
+}
+
+function setupSplitTarget(target){
+  target.addEventListener('dragover',e=>{
+    e.preventDefault();
+    target.classList.add('hot');
+  });
+  target.addEventListener('dragleave',()=>target.classList.remove('hot'));
+  target.addEventListener('drop',e=>{
+    e.preventDefault();
+    target.classList.remove('hot');
+    placeSelectedApple(target===els.splitTargetA ? els.splitObjectsA : els.splitObjectsB);
+  });
+  target.addEventListener('click',()=>{
+    placeSelectedApple(target===els.splitTargetA ? els.splitObjectsA : els.splitObjectsB);
+  });
+}
+
+setupSplitTarget(els.splitTargetA);
+setupSplitTarget(els.splitTargetB);
+
 function renderSplitGame(){
   els.card.classList.add('hidden'); els.finish.classList.add('hidden'); els.explorer.classList.add('hidden');
   els.splitScreen.classList.remove('hidden'); els.eyeScreen.classList.add('hidden'); els.smartScreen.classList.add('hidden'); els.statsBar.classList.add('hidden');
-  const pair = SPLIT_WAYS[splitIndex % SPLIT_WAYS.length];
-  els.splitBoard.innerHTML = `
-    <div class="split-part"><h3>Nhóm A</h3><div class="split-objects">${'🍎'.repeat(pair[0]) || '<span style="font-size:18px;color:#91a6bd">Không có quả táo</span>'}</div><strong>${pair[0]} quả</strong></div>
-    <div class="split-sign">+</div>
-    <div class="split-part"><h3>Nhóm B</h3><div class="split-objects">${'🍎'.repeat(pair[1]) || '<span style="font-size:18px;color:#91a6bd">Không có quả táo</span>'}</div><strong>${pair[1]} quả</strong></div>`;
-  const choices = shuffle([
-    `${pair[0]} + ${pair[1]}`,
-    ...[[0,8],[1,7],[2,6],[3,5],[4,4],[5,3],[6,2],[7,1],[8,0]].filter(x=>x[0]!==pair[0] || x[1]!==pair[1]).slice(0,3).map(x=>`${x[0]} + ${x[1]}`)
-  ]);
-  els.splitChoices.innerHTML='';
-  choices.forEach(txt=>{
-    const b=document.createElement('button'); b.className='split-choice'; b.textContent=txt;
+
+  const pair=SPLIT_WAYS[splitIndex%SPLIT_WAYS.length];
+  splitGiven=pair[0];
+  splitPlacedA=0; splitPlacedB=0; splitSelectedApple=null;
+
+  els.splitGivenNumber.textContent=splitGiven;
+  els.splitSecondNumber.textContent='?';
+  els.splitObjectsA.innerHTML='';
+  els.splitObjectsB.innerHTML='';
+  els.splitSourceObjects.innerHTML='';
+  els.splitFeedback.textContent=`🌱 Bé hãy kéo ${splitGiven} quả táo vào Nhóm 1.`;
+  els.splitFeedback.style.color='#58769a';
+
+  for(let i=1;i<=8;i++) els.splitSourceObjects.appendChild(makeSplitApple(i));
+
+  els.splitNumberChoices.innerHTML='';
+  for(let n=0;n<=8;n++){
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=n; b.disabled=true;
     b.addEventListener('click',()=>{
-      const ok=txt===`${pair[0]} + ${pair[1]}`;
-      if(ok){ b.classList.add('correct'); els.splitFeedback.textContent=`🎉 Chính xác! ${pair[0]} + ${pair[1]} = 8. Bé tìm được một cách tách 8 rồi!`; score+=10; els.splitFeedback.style.color='#139c63'; playCorrectSound(); speak(`Giỏi quá! ${pair[0]} cộng ${pair[1]} bằng 8.`); }
-      else { b.classList.add('wrong'); els.splitFeedback.textContent='🌱 Chưa đúng, bé đếm lại hai nhóm nhé!'; els.splitFeedback.style.color='#bf6b2d'; playWrongSound(); speak('Bé thử lại nhé!'); setTimeout(()=>b.classList.remove('wrong'),500); }
-      els.score.textContent=score;
+      if(splitPlacedA+splitPlacedB<8) return;
+      const correct=8-splitGiven;
+      if(n===correct){
+        els.splitSecondNumber.textContent=n;
+        b.classList.add('correct');
+        els.splitFeedback.textContent=`🎉 Chính xác! ${splitGiven} và ${n} tạo thành 8.`;
+        els.splitFeedback.style.color='#139c63';
+        score+=10; els.score.textContent=score;
+        playCorrectSound(); speak(`Giỏi quá! ${splitGiven} và ${n} tạo thành 8.`);
+        els.splitNumberChoices.querySelectorAll('button').forEach(x=>x.disabled=true);
+      }else{
+        b.classList.add('wrong');
+        els.splitFeedback.textContent='🌱 Chưa đúng. Bé đếm lại nhóm còn lại nhé!';
+        els.splitFeedback.style.color='#bf6b2d';
+        playWrongSound(); speak('Bé thử đếm lại nhóm còn lại nhé!');
+        setTimeout(()=>b.classList.remove('wrong'),450);
+      }
     });
-    els.splitChoices.appendChild(b);
-  });
-  speak(`Có 8 quả táo. Bé hãy tìm cách tách 8 thành hai phần: ${pair[0]} và ${pair[1]}.`);
+    els.splitNumberChoices.appendChild(b);
+  }
+
+  speak(`Có 8 quả táo. Bé hãy kéo ${splitGiven} quả vào Nhóm 1, những quả còn lại kéo vào Nhóm 2.`);
 }
-els.splitNext.addEventListener('click',()=>{ splitIndex=(splitIndex+1)%SPLIT_WAYS.length; renderSplitGame(); });
+els.splitNext.addEventListener('click',()=>{splitIndex=(splitIndex+1)%SPLIT_WAYS.length;renderSplitGame();});
 
 /* =========================================================
    9B. MINI GAME: AI TINH MẮT
@@ -1239,40 +1421,90 @@ $('playAgainBtn').addEventListener('click', () => switchMode('standard'));
 $('restartBtn').addEventListener('click', () => switchMode(currentMode));
 
 /* =========================================================
-   10. INTERACTIVE EXPLORER BOARD (MODE 3)
+   10. INTERACTIVE NUMBER MATCHING BOARD (MODE 3)
    ========================================================= */
 function renderExplorerScreen() {
   els.card.classList.add("hidden");
   els.finish.classList.add("hidden");
-  els.splitScreen.classList.add("hidden"); els.eyeScreen.classList.add("hidden"); els.smartScreen.classList.add("hidden");
+  els.splitScreen.classList.add("hidden");
+  els.eyeScreen.classList.add("hidden");
+  els.smartScreen.classList.add("hidden");
   els.explorer.classList.remove("hidden");
   els.statsBar.classList.add("hidden");
 
-  els.explorerGrid.innerHTML = "";
-  for(let i=1; i<=8; i++) {
-    const card = document.createElement("div");
-    card.className = "num-card";
-    const emoji = EXPLORER_ITEMS[i-1];
-    
-    let itemsHTML = "";
-    for(let k=0; k<i; k++) itemsHTML += emoji;
+  els.explorerNumbers.innerHTML="";
+  els.explorerObjects.innerHTML="";
+  els.explorerFeedback.textContent="👆 Bé hãy kéo một nhóm đồ vật vào số phù hợp!";
+  els.explorerFeedback.style.color='#58769a';
 
-    card.innerHTML = `
-      <div class="big-num">${i}</div>
-      <div class="items-preview">${itemsHTML}</div>
-    `;
+  const items=shuffle(EXPLORER_ITEMS.map((emoji,i)=>({n:i+1,emoji})));
+  const selected={value:null,el:null};
+  let matched=0;
 
-    card.addEventListener("click", () => {
-      playClickSound();
-      card.style.transform = "scale(1.08)";
-      setTimeout(()=>card.style.transform="", 200);
-      speak(`Số ${i}. ${i} ${emoji}`);
+  for(let n=1;n<=8;n++){
+    const row=document.createElement('div');
+    row.className='explorer-match-tile';
+    row.innerHTML=`<div class="explorer-number-tile">${n}</div><div class="explorer-drop" data-number="${n}">Kéo nhóm đồ vật vào đây</div>`;
+    const drop=row.querySelector('.explorer-drop');
+
+    const accept=(value,source)=>{
+      if(drop.classList.contains('correct')) return;
+      if(Number(value)===n){
+        drop.classList.remove('hot');
+        drop.classList.add('correct');
+        drop.innerHTML=`<span style="font-size:27px">${items.find(x=>x.n===n)?.emoji||'🍎'}</span> × ${n}`;
+        if(source) source.classList.add('used');
+        matched++;
+        score+=10; els.score.textContent=score;
+        playCorrectSound(); speak(`Chính xác! Số ${n}.`);
+        els.explorerFeedback.textContent=matched===8?'🏆 Tuyệt vời! Bé đã ghép đúng tất cả!':'🎯 Đúng rồi! Bé tiếp tục ghép nhé!';
+        els.explorerFeedback.style.color='#139c63';
+      }else{
+        drop.classList.add('hot');
+        els.explorerFeedback.textContent='🌱 Chưa đúng. Bé đếm lại số lượng đồ vật nhé!';
+        els.explorerFeedback.style.color='#bf6b2d';
+        playWrongSound(); speak('Bé nhìn lại số lượng nhé!');
+        setTimeout(()=>drop.classList.remove('hot'),400);
+      }
+      selected.value=null; selected.el=null;
+      els.explorerObjects.querySelectorAll('.object-drag-card').forEach(x=>x.classList.remove('selected'));
+    };
+
+    drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('hot')});
+    drop.addEventListener('dragleave',()=>drop.classList.remove('hot'));
+    drop.addEventListener('drop',e=>{
+      e.preventDefault(); drop.classList.remove('hot');
+      const source=selected.el || els.explorerObjects.querySelector(`[data-value="${e.dataTransfer.getData('text/plain')}"]`);
+      accept(e.dataTransfer.getData('text/plain'),source);
     });
-
-    els.explorerGrid.appendChild(card);
+    drop.addEventListener('click',()=>{if(selected.el)accept(selected.value,selected.el);});
+    els.explorerNumbers.appendChild(row);
   }
 
-  speak("Bé hãy chạm vào từng chữ số để khám phá nhé!");
+  items.forEach(item=>{
+    const card=document.createElement('button');
+    card.type='button';
+    card.className='object-drag-card';
+    card.dataset.value=item.n;
+    card.draggable=true;
+    card.innerHTML=`<span class="object-icons">${item.emoji.repeat(item.n)}</span><span class="object-count">× ${item.n}</span>`;
+    card.addEventListener('click',()=>{
+      if(card.classList.contains('used'))return;
+      selected.value=item.n; selected.el=card;
+      els.explorerObjects.querySelectorAll('.object-drag-card').forEach(x=>x.classList.remove('selected'));
+      card.classList.add('selected');
+      els.explorerFeedback.textContent=`👆 Bé đã chọn nhóm có ${item.n} đồ vật. Hãy chạm vào số ${item.n}.`;
+      speak(`Nhóm có ${item.n} đồ vật.`);
+    });
+    card.addEventListener('dragstart',e=>{
+      if(card.classList.contains('used')){e.preventDefault();return;}
+      selected.value=item.n; selected.el=card;
+      e.dataTransfer.setData('text/plain',String(item.n));
+    });
+    els.explorerObjects.appendChild(card);
+  });
+
+  speak("Bé hãy kéo các nhóm đồ vật ghép đôi với số tương ứng.");
 }
 
 /* Toggles */
@@ -1285,7 +1517,7 @@ els.sound.addEventListener("click", () => {
 els.speech.addEventListener("click", () => {
   speechEnabled = !speechEnabled;
   els.speech.classList.toggle("active", speechEnabled);
-  els.speech.textContent = speechEnabled ? "🗣️ Đọc: Bật" : "🤫 Đọc: Tắt";
+  els.speech.textContent = speechEnabled ? "👧 Giọng bé gái Bắc: Bật" : "🤫 Đọc: Tắt";
   if(!speechEnabled && 'speechSynthesis' in window) window.speechSynthesis.cancel();
 });
 
